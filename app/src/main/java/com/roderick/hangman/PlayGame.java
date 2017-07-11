@@ -1,8 +1,5 @@
 package com.roderick.hangman;
 
-/**
- * Created by Agumon on 7/10/2017.
- */
 
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
@@ -175,27 +172,27 @@ public class PlayGame extends AppCompatActivity {
     public void changeImage(){
         ImageView imgView = (ImageView) findViewById(R.id.imageView11);
         switch(chanceTry){
-            case 10: imgView.setBackgroundResource(R.drawable.formatfactory1);
+            case 10: imgView.setBackgroundResource(R.drawable.pic1);
                 break;
-            case 9: imgView.setBackgroundResource(R.drawable.formatfactory2);
+            case 9: imgView.setBackgroundResource(R.drawable.pic2);
                 break;
-            case 8: imgView.setBackgroundResource(R.drawable.formatfactory3);
+            case 8: imgView.setBackgroundResource(R.drawable.pic3);
                 break;
-            case 7: imgView.setBackgroundResource(R.drawable.formatfactory4);
+            case 7: imgView.setBackgroundResource(R.drawable.pic4);
                 break;
-            case 6: imgView.setBackgroundResource(R.drawable.formatfactory5);
+            case 6: imgView.setBackgroundResource(R.drawable.pic5);
                 break;
-            case 5 : imgView.setBackgroundResource(R.drawable.formatfactory6);
+            case 5 : imgView.setBackgroundResource(R.drawable.pic6);
                 break;
-            case 4: imgView.setBackgroundResource(R.drawable.formatfactory7);
+            case 4: imgView.setBackgroundResource(R.drawable.pic7);
                 break;
-            case 3: imgView.setBackgroundResource(R.drawable.formatfactory8);
+            case 3: imgView.setBackgroundResource(R.drawable.pic8);
                 break;
-            case 2: imgView.setBackgroundResource(R.drawable.formatfactory9);
+            case 2: imgView.setBackgroundResource(R.drawable.pic9);
                 break;
-            case 1: imgView.setBackgroundResource(R.drawable.formatfactory10);
+            case 1: imgView.setBackgroundResource(R.drawable.pic10);
                 break;
-            case 0:imgView.setBackgroundResource(R.drawable.formatfactory11);
+            case 0:imgView.setBackgroundResource(R.drawable.pic11);
                 //show game over screen!
                 break;
         }
