@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/imageButton6"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/formatfactory1" />
+            app:srcCompat="@drawable/pic1" />
 
         <ImageButton
             android:id="@+id/imageButton6"
