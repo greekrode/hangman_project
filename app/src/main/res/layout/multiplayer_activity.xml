@@ -26,24 +26,25 @@
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/words"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/desc"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
         android:ems="10"
-        android:textAlignment="center"
+        android:maxLength="6"
+        android:hint="Your Text Here"
         android:inputType="textPersonName"
-        android:text="WORD" />
+        android:textAlignment="center" />
 
     <Button
-        android:id="@+id/submit_btn"
+        android:id="@+id/sbmt_btn"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/buttonshape"
-        android:text="SUBMIT" />
+        android:text="SUBMIT"
+        android:layout_below="@+id/words"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
