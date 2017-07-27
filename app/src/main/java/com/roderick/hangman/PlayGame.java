@@ -33,7 +33,6 @@ public class PlayGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.play_game);
         getWord();
-
     }
     //textview starts from 21
     //buttons starts from 100

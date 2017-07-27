@@ -165,14 +165,6 @@
                 android:orientation="horizontal"></LinearLayout>
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/imageView11"
-            android:layout_marginTop="63dp"
-            android:layout_toStartOf="@+id/live4"
-            android:text="TextView" />
 
 
     </RelativeLayout>
