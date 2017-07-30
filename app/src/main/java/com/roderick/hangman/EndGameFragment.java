@@ -54,6 +54,7 @@ public class EndGameFragment extends Fragment {
         TextView score = (TextView) view.findViewById(R.id.score);
         //update score ke textview
         String strtext = getArguments().getString("Status");
+        String strtextMode = getArguments().getString("Mode");
         if(strtext.equals("Win")){
             String times = getArguments().getString("Chance");
             Integer value1 = Integer.parseInt(times);
@@ -73,6 +74,7 @@ public class EndGameFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +82,9 @@ public class EndGameFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        if(strtextMode.equals("Singleplayer")){}else{
+            resetButton.setEnabled(false);
+        }
         // Inflate the layout for this fragment
         return view;
 
