@@ -38,7 +38,7 @@ public class MultiplayerGuess extends AppCompatActivity {
 
     public void getWord() {
         Intent intent = getIntent();
-        String guessWord = intent.getStringExtra("Text");
+        guessWord = intent.getStringExtra("Text");
         generateWords(guessWord);
         try {
             generateAnswers();
@@ -47,8 +47,7 @@ public class MultiplayerGuess extends AppCompatActivity {
         }
     }
     public void generateWords(String s){
-        //lihat panjang katanya, buat textview
-        String[] arrayWords = guessWord.split("");
+        String[] arrayWords = s.split("");
         int a = 20;
         //assign id ke textview , mark as _ first
         for(String r:arrayWords) {
@@ -57,8 +56,7 @@ public class MultiplayerGuess extends AppCompatActivity {
             } else {
                 TextView tView = new TextView(this);
                 tView.setText("_");
-                tView.setId(++a); //21 dan seterusnya
-                //get a better way to do this pls
+                tView.setId(++a);
                 Log.d("Current id =  "+a,"coba");
                 LinearLayout ll = (LinearLayout) findViewById(R.id.linearLayout);
                 int dp = 10;
@@ -70,29 +68,22 @@ public class MultiplayerGuess extends AppCompatActivity {
             }
         }
     }
-    //generate button for random words (with some predetermined words)
     int i = 100; // di depan biar bisa cek benar salah
     public void generateAnswers() throws InterruptedException {
-        //split the words into something and then do something
         String[] arrayAns = guessWord.split("");
-        //or you can just loop it.. dunno
         for(final String s : arrayAns) {
+
             if (s.equals("")) {
             }
             else {
                 if (ansWords.contains(s)) {
-                    //kalo sudah ada kata yang sama, abaikan pembuatan buttonnya !
                 } else {
-                    //buat kata baru, terus ditambahin ke list button biar dishuffle ntar
-                    ansWords.add(s);
-                    Log.d("String :  "+s,"");
                     String currWord = s;
                     //create button for the answer
                     final Button buttonAns = new Button(this);
                     buttonAns.setText(s);
                     //assign id
                     buttonAns.setId(i + 1);
-                    //100 dst
                     //generateUniqueId();
                     final int index = i;
                     //for onclicklistener
@@ -100,44 +91,39 @@ public class MultiplayerGuess extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             buttonAns.setEnabled(false);
-                            //hajar ke kata yang ada
                             Answer(s);
                         }
                     });
                     buttonList.add(buttonAns); // masukkan ke list
-
+                    ansWords.add(currWord);
                 }
-
-
             }
-
         }
-        Log.d("banyak button " +String.valueOf(buttonList.size()),"LUL");
-        //14 buttons
+        //generating wrong answer button
         int besaran = buttonList.size();
         for(int a = 0;a < 14-besaran;a++){
             boolean ulang = true;
             while(ulang) {
-                //        Log.d("Current turn : "+String.valueOf(a),"cacca");
+                ulang = true;
                 Random r = new Random();
                 //randoming from A-Z
                 Thread.sleep(10);
                 char c = (char) (r.nextInt(26) + 'A');
                 final String testMe = String.valueOf(c);
-                //kalo sudah ada, repeat the randomization
-                Log.d("Generated char = " +testMe," xD");
-                if (ansWords.contains(testMe)) {} else {
+                if (ansWords.contains(testMe)) {
+                    ulang = true;
+                    Log.d("hello", testMe);
+                    } else {
+                    ansWords.add(testMe);
                     //belum ada char tersebut, generate the button and add to list
                     ulang = false;
                     //create button for the answer
-
                     final Button buttonAns = new Button(this);
                     buttonAns.setText(testMe);
                     //assign id
                     buttonAns.setId(i+buttonList.size());//100+size dari list yang sudah dibuat (correct answers)
                     //generateUniqueId();
                     final int index = i;
-                    //for onclicklistener
                     buttonAns.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -151,7 +137,6 @@ public class MultiplayerGuess extends AppCompatActivity {
             }
             ulang= true;
         }
-        //  Log.d("banyak button " +String.valueOf(buttonList.size()),"LUL");
         //https://stackoverflow.com/questions/17916803/shuffle-button-with-position-android
         LinearLayout bagianAtas = (LinearLayout)findViewById(R.id.linearAtas);
         LinearLayout bagianBawah = (LinearLayout)findViewById(R.id.linearBawah);
@@ -174,20 +159,15 @@ public class MultiplayerGuess extends AppCompatActivity {
 
     }
     public void Answer(String s){
-        //tambah guess try
         int kena = 0;
         for(int i = 0;i<guessWord.length();i++){
-            //check kena atau tidak
             if(s.equals(String.valueOf(guessWord.charAt(i)))){
-                //kena, reveal huruf nya
                 TextView textAns = (TextView)findViewById(i+21);
                 textAns.setText(s);
                 kena++;
                 checkWinCondition();
             }else{
-
             }
-            //tidak kena , kurangi chance, ganti image
         }
         if(kena ==0) {
             chanceTry--;
@@ -227,7 +207,6 @@ public class MultiplayerGuess extends AppCompatActivity {
     }
     public void checkWinCondition(){
         int winValue = 0;
-        //check semua textview, bila sudah terlihat semua maka lakukan sesuatu
         for(int i = 0;i<guessWord.length();i++){
             TextView checkThis = (TextView)findViewById(i+21);
             String wordsToCheck = checkThis.getText().toString();
@@ -236,12 +215,38 @@ public class MultiplayerGuess extends AppCompatActivity {
             }
         }
         if(winValue == guessWord.length()){
-            //menang \o/
+            Bundle bundle = new Bundle();
+            bundle.putString("Status","Win");
+            bundle.putString("Chance",String.valueOf(chanceTry));
+            bundle.putString("Mode","Multiplayer");
+            EndGameFragment fragment = new EndGameFragment();
+            fragment.setArguments(bundle);
+            getSupportFragmentManager().beginTransaction().add(
+                    R.id.linearLayoutMain, fragment
+                    ,EndGameFragment.class.getSimpleName())
+                    .commit();
+            getSupportFragmentManager().beginTransaction().replace(
+                    R.id.linearLayoutMain, fragment,
+                    EndGameFragment.class.getSimpleName()).commit();
+
+            Log.d("Menang ! ","hello");
         }
     }
+
     public void gameOver(){
-        //send gameover screen here
-        //send data too?
+        Bundle bundle = new Bundle();
+        bundle.putString("Status","Lose");
+        bundle.putString("Chance",String.valueOf(chanceTry));
+        bundle.putString("Mode","Multiplayer");
+        EndGameFragment fragment = new EndGameFragment();
+        fragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().add(
+                R.id.linearLayoutMain, fragment
+                ,EndGameFragment.class.getSimpleName())
+                .commit();
+        getSupportFragmentManager().beginTransaction().replace(
+                R.id.linearLayoutMain, fragment,
+                EndGameFragment.class.getSimpleName()).commit();
     }
     public void reset(){
         chanceTry = 10;
