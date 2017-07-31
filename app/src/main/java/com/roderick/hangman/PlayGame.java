@@ -1,7 +1,6 @@
 package com.roderick.hangman;
 
-
-
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.roderick.hangman.model.Score;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -20,16 +21,26 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
+
 public class PlayGame extends AppCompatActivity {
     public String[] words =  {"TEST","COBA","KURAKURA"};
     public ArrayList<Button> buttonList = new ArrayList<Button>();
     public ArrayList<String> ansWords= new ArrayList<String>();
     public String guessWord = "";
     public int chanceTry = 5;
+    Realm realm;
+    public String name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        realm = Realm.getDefaultInstance();
         setContentView(R.layout.play_game);
+        Intent intent = getIntent();
+        name = intent.getStringExtra("Text");
         getWord();
     }
     //textview starts from 21
@@ -284,5 +295,30 @@ public class PlayGame extends AppCompatActivity {
     public int getGuessWordLength(){
         return guessWord.length();
     }
-    //end of file
+
+    public void addScore(){
+        realm.beginTransaction();
+
+        Score score = realm.createObject(Score.class);
+        score.setName(name);
+        // score.setScore(/** add score here */);
+
+        realm.commitTransaction();
+    }
+
+    public void updateScore(){
+        RealmResults<Score> results = realm.where(Score.class).equalTo("name",name).findAll();
+
+        realm.beginTransaction();
+
+        for(Score score : results){
+            // score.setScore(/** add score */);
+        }
+
+        realm.commitTransaction();
+
+
+    }
+
+
 }

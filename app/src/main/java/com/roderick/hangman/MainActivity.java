@@ -6,18 +6,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        Realm.init(this);
+        setContentView(R.layout.enter_name);
         Button buttonNew = (Button) findViewById(R.id.newgame);
         buttonNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), PlayGame.class);
+                Intent intent = new Intent(getBaseContext(), EnterPlayerName.class);
                 startActivity(intent);
             }
         });

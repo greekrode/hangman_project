@@ -22,6 +22,7 @@
 
         <activity android:name=".Multiplayer"></activity>
         <activity android:name=".MultiplayerGuess"></activity>
+        <activity android:name=".EnterPlayerName"></activity>
     </application>
 
 </manifest>
