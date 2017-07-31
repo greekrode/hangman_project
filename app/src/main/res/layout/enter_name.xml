@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="150dp"
+        android:textColor="#000000"
+        android:textSize="35dp"
+        android:text="WRITE YOUR NAME" />
+
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
+        android:ems="10"
+        android:hint="Your Text Here"
+        android:inputType="textPersonName"
+        android:maxLength="6"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/sbmt_btn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/buttonshape"
+        android:layout_gravity="center_horizontal"
+        android:text="SUBMIT" />
+
+
+
+</LinearLayout>
