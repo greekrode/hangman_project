@@ -26,7 +26,7 @@ public class HighScore extends AppCompatActivity {
         RealmResults<Score> results = realm.where(Score.class).findAll();
 
         for (Score score : results){
-            //text.append(score.getName() + " " + score.getScore() + "\n");
+
         }
     }
 }

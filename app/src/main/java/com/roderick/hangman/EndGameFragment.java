@@ -11,6 +11,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.roderick.hangman.model.Score;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
+
 public class EndGameFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";
@@ -18,6 +23,10 @@ public class EndGameFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
+
+    public int highscore;
+    Realm realm;
+    public String name;
 
     private OnFragmentInteractionListener mListener;
 
@@ -38,6 +47,8 @@ public class EndGameFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        realm = Realm.getDefaultInstance();
+        name =  getArguments().getString("Name");
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -60,7 +71,8 @@ public class EndGameFragment extends Fragment {
             Integer value1 = Integer.parseInt(times);
             value1 = value1 * 100;
             status.setText("You Win!");
-            score.setText(value1.toString());
+            highscore = value1;
+            addScore();
         }else{
             status.setText("You Lose!");
             score.setText("0");
@@ -105,5 +117,33 @@ public class EndGameFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void addScore(){
+        realm.beginTransaction();
+
+        Score score = realm.createObject(Score.class);
+        score.setName(name);
+        score.setScore(highscore);
+
+        realm.commitTransaction();
+    }
+
+    public void updateScore(){
+        RealmResults<Score> results = realm.where(Score.class).equalTo("name",name).findAll();
+
+        realm.beginTransaction();
+
+        for(Score score : results){
+            score.setScore(highscore);
+        }
+
+        realm.commitTransaction();
+    }
+
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        realm.close();
     }
 }

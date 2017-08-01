@@ -27,7 +27,7 @@
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/easy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -35,7 +35,7 @@
             android:text="Easy" />
 
         <RadioButton
-            android:id="@+id/radioButton5"
+            android:id="@+id/medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -43,7 +43,7 @@
             android:text="Medium" />
 
         <RadioButton
-            android:id="@+id/radioButton6"
+            android:id="@+id/hard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -51,22 +51,6 @@
             android:text="Hard" />
 
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-
-        <Switch
-            android:id="@+id/switch2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="25dp"
-            android:layout_marginLeft="10dp"
-            android:text="Sound" />
     </LinearLayout>
 
 </LinearLayout>

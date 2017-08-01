@@ -31,16 +31,23 @@ public class PlayGame extends AppCompatActivity {
     public ArrayList<String> ansWords= new ArrayList<String>();
     public String guessWord = "";
     public int chanceTry = 5;
-    Realm realm;
+
     public String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        realm = Realm.getDefaultInstance();
         setContentView(R.layout.play_game);
         Intent intent = getIntent();
         name = intent.getStringExtra("Text");
+        Bundle bundle = new Bundle();
+        bundle.putString("Name",name);
+        EndGameFragment fragment = new EndGameFragment();
+        fragment.setArguments(bundle);
+        getSupportFragmentManager().beginTransaction().add(
+                R.id.linearLayoutMain, fragment
+                ,EndGameFragment.class.getSimpleName())
+                .commit();
         getWord();
     }
     //textview starts from 21
@@ -295,30 +302,5 @@ public class PlayGame extends AppCompatActivity {
     public int getGuessWordLength(){
         return guessWord.length();
     }
-
-    public void addScore(){
-        realm.beginTransaction();
-
-        Score score = realm.createObject(Score.class);
-        score.setName(name);
-        // score.setScore(/** add score here */);
-
-        realm.commitTransaction();
-    }
-
-    public void updateScore(){
-        RealmResults<Score> results = realm.where(Score.class).equalTo("name",name).findAll();
-
-        realm.beginTransaction();
-
-        for(Score score : results){
-            // score.setScore(/** add score */);
-        }
-
-        realm.commitTransaction();
-
-
-    }
-
 
 }
