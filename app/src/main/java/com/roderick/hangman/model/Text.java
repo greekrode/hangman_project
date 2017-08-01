@@ -10,7 +10,7 @@ import io.realm.annotations.RealmClass;
 
 @RealmClass
 public class Text extends RealmObject {
-    
+
     private String words;
 
     public String getWords() {

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "411409224763",
+    "project_id": "hangman-217fd"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:411409224763:android:c38016a6e9eb8697",
+        "android_client_info": {
+          "package_name": "com.roderick.hangman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "411409224763-0mjahiqt9kkck8ljvigp6nd93ul4q1oi.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "411409224763-56prgmhof41t61pkctt7s7btbof73d2a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.roderick.hangman",
+            "certificate_hash": "43615d4376eef849d61dfe8de27cfb96ccf64d06"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaKCAR4sd5okJ41G-kA9kgxwPPXrwmudM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
