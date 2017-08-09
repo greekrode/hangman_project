@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Realm.init(this);
-        setContentView(R.layout.enter_name);
+        setContentView(R.layout.activity_main);
         Button buttonNew = (Button) findViewById(R.id.newgame);
         buttonNew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +35,14 @@ public class MainActivity extends AppCompatActivity {
 
         Button setting = (Button)findViewById(R.id.setting);
         setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), Settings.class);
+                startActivity(intent);
+            }
+        });
+        Button highScore = (Button)findViewById(R.id.high_score);
+        highScore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getBaseContext(), HighScore.class);
