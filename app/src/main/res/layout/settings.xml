@@ -26,29 +26,37 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/easy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Easy" />
+            android:orientation="horizontal"
+            android:id="@+id/radioGroup">
 
-        <RadioButton
-            android:id="@+id/medium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Medium" />
+            <RadioButton
+                android:id="@+id/radioButtonEasy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Easy"
+                android:textColor="@color/colorPrimaryDark" />
 
-        <RadioButton
-            android:id="@+id/hard"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/colorPrimaryDark"
-            android:text="Hard" />
+            <RadioButton
+                android:id="@+id/radioButtonNormal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Medium"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <RadioButton
+                android:id="@+id/radioButtonHard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Hard"
+                android:textColor="@color/colorPrimaryDark" />
+        </RadioGroup>
 
 
     </LinearLayout>

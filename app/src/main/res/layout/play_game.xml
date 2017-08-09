@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/linearLayoutMain">
 
 
-<RelativeLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,7 +15,6 @@
             android:id="@+id/imageView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imageButton6"
             android:layout_centerHorizontal="true"
             app:srcCompat="@drawable/pic1" />
 
@@ -28,7 +27,7 @@
             android:layout_alignParentTop="true"
             app:srcCompat="@drawable/ic_settings" />
 
-    <LinearLayout
+        <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="59dp"
@@ -128,4 +127,4 @@
 
     </RelativeLayout>
 
-</LinearLayout>
+</FrameLayout>
