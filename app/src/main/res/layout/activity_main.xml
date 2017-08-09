@@ -42,15 +42,6 @@
             android:text="Multiplayer" />
 
         <Button
-            android:id="@+id/resumegame"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/buttonshape"
-            android:text="Resume" />
-
-        <Button
             android:id="@+id/setting"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -58,6 +49,15 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/buttonshape"
             android:text="Settings" />
+
+        <Button
+            android:id="@+id/high_score"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/buttonshape"
+            android:text="HIGH SCORE" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
