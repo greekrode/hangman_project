@@ -31,7 +31,8 @@ public class PlayGame extends AppCompatActivity {
     public ArrayList<String> ansWords= new ArrayList<String>();
     public String guessWord = "";
     public int chanceTry = 5;
-
+    //default value = easy
+    public static String Difficulty = "Easy";
     public String name;
 
     @Override
@@ -40,20 +41,19 @@ public class PlayGame extends AppCompatActivity {
         setContentView(R.layout.play_game);
         Intent intent = getIntent();
         name = intent.getStringExtra("Text");
-        Bundle bundle = new Bundle();
-        bundle.putString("Name",name);
-        EndGameFragment fragment = new EndGameFragment();
-        fragment.setArguments(bundle);
-        getSupportFragmentManager().beginTransaction().add(
-                R.id.linearLayoutMain, fragment
-                ,EndGameFragment.class.getSimpleName())
-                .commit();
         getWord();
     }
     //textview starts from 21
     //buttons starts from 100
     //get what word randomed
     public void getWord() {
+//        if(Difficulty.equalsIgnoreCase("Easy")){
+//
+//        }else if(Difficulty.equalsIgnoreCase("Normal")){
+//
+//        }else{
+//
+//        }
         Random rnd = ThreadLocalRandom.current();
         for (int i = words.length - 1; i > 0; i--) {
             int index = rnd.nextInt(i + 1);
@@ -82,8 +82,7 @@ public class PlayGame extends AppCompatActivity {
             } else {
                 TextView tView = new TextView(this);
                 tView.setText("_");
-                tView.setId(++a); //21 dan seterusnya
-                //get a better way to do this pls
+                tView.setId(++a);
                 Log.d("Current id =  "+a,"coba");
                 LinearLayout ll = (LinearLayout) findViewById(R.id.linearLayout);
                 int dp = 10;
@@ -95,16 +94,19 @@ public class PlayGame extends AppCompatActivity {
             }
         }
     }
-    //generate button for random words (with some predetermined words)
+
     int i = 100; // di depan biar bisa cek benar salah
     public void generateAnswers() throws InterruptedException {
+        //split the words into something and then do something
         String[] arrayAns = guessWord.split("");
+        //or you can just loop it.. dunno
         for(final String s : arrayAns) {
             if (s.equals("")) {
             }
             else {
                 if (ansWords.contains(s)) {
                     //kalo sudah ada kata yang sama, abaikan pembuatan buttonnya !
+                    ansWords.add(s);
                 } else {
                     //buat kata baru, terus ditambahin ke list button biar dishuffle ntar
                     ansWords.add(s);
@@ -128,8 +130,12 @@ public class PlayGame extends AppCompatActivity {
                         }
                     });
                     buttonList.add(buttonAns); // masukkan ke list
+
                 }
+
+
             }
+
         }
         Log.d("banyak button " +String.valueOf(buttonList.size()),"LUL");
         //14 buttons
@@ -143,9 +149,9 @@ public class PlayGame extends AppCompatActivity {
                 char c = (char) (r.nextInt(26) + 'A');
                 final String testMe = String.valueOf(c);
                 //kalo sudah ada, repeat the randomization
-                Log.d("Generated char = " +testMe," xD");
                 if (ansWords.contains(testMe)) {} else {
                     ulang = false;
+                    //create button for the answer
                     final Button buttonAns = new Button(this);
                     buttonAns.setText(testMe);
                     //assign id
@@ -164,7 +170,6 @@ public class PlayGame extends AppCompatActivity {
                     buttonList.add(buttonAns); // masukkan ke list
                 }
             }
-            ulang= true;
         }
         //https://stackoverflow.com/questions/17916803/shuffle-button-with-position-android
         LinearLayout bagianAtas = (LinearLayout)findViewById(R.id.linearAtas);
@@ -191,7 +196,6 @@ public class PlayGame extends AppCompatActivity {
         //tambah guess try
         int kena = 0;
         for(int i = 0;i<guessWord.length();i++){
-            //check kena atau tidak
             if(s.equals(String.valueOf(guessWord.charAt(i)))){
                 TextView textAns = (TextView)findViewById(i+21);
                 textAns.setText(s);
@@ -200,8 +204,8 @@ public class PlayGame extends AppCompatActivity {
             }else{
 
             }
-            }
-            if(kena ==0) {
+        }
+        if(kena ==0) {
             chanceTry--;
             changeImage();
         }
@@ -244,11 +248,12 @@ public class PlayGame extends AppCompatActivity {
                 winValue++;
             }
         }
-        if(winValue == guessWord.length()){
+        if (winValue == guessWord.length()) {
+            Log.d("asdasd","Win ");
             Bundle bundle = new Bundle();
-            bundle.putString("Status","Win");
-            bundle.putString("Chance",String.valueOf(chanceTry));
-            bundle.putString("Mode","Singleplayer");
+            bundle.putString("Status", "Win");
+            bundle.putString("Chance", String.valueOf(chanceTry));
+            bundle.putString("Mode", "Singleplayer");
             EndGameFragment fragment = new EndGameFragment();
             fragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().add(
@@ -275,7 +280,6 @@ public class PlayGame extends AppCompatActivity {
                 R.id.linearLayoutMain, fragment,
                 EndGameFragment.class.getSimpleName()).commit();
     }
-
 
     public void reset(){
         chanceTry = 10;
