@@ -23,7 +23,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".PlayGame">
 
-        </activity>
+        </activity> 
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,6 +34,8 @@
         <activity android:name=".Multiplayer"></activity>
         <activity android:name=".MultiplayerGuess"></activity>
         <activity android:name=".EnterPlayerName"></activity>
+        <activity android:name=".Settings"></activity>
+        <activity android:name=".HighScore"></activity>
     </application>
 
 </manifest>
